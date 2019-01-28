@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rally Table</title>
+		<meta charset="UTF-8">
+		<style type="text/css">
+			#table .line:nth-child(odd){background-color: lightgray;}
+			#table .line:nth-child(even){background-color: white;}
+			#table .line.active{background-color: yellow;}
+			#table {
+				-webkit-column-count: 3;
+				-moz-column-count: 3;
+				column-count: 3;
+
+				-webkit-column-rule: 1px solid lightgray;
+				-moz-column-rule: 1px solid lightgray;
+				column-rule: 1px solid lightgray;
+
+				-webkit-column-gap: 20px;
+				-moz-column-gap: 20px;
+				column-gap: 20px;
+
+				text-align: center;
+				width: 400px;
+			}
+			input.speed{width:35px;}
+			#menu div{float: left;}
+		</style>
+	</head>
+	<body>
+		<div id="menu">
+			<div>
+				<select id='ddUnits'>
+					<option value="2">Miles</option>
+					<option value="1">Kilometres</option>
+				</select>
+			</div>
+			<div>
+				<input type="radio" name="metric" value="metric" checked>km/h: <input id="mainSpeed" class="speed" type="text" value="45.00"/></input>
+				<input type="radio" name="metric" value="imperial" id='s'>mph: <input id="mainSpeedMiles" class="speed" type="text" value=""/></input>
+			</div>
+			<div>
+				<button onClick="createTable()">Create Table</button>
+			</div>
+		</div>
+		<div id="container">
+			<br>
+			<hr>
+			<div id="table"></div>
+		</div>
+
+		<script type="text/javascript">
+			var mileConv = 1.609344;
+			function formatMinutes(hrs){
+				var mill = hrs * 60 * 60 * 1000;
+				var date = new Date(mill).toUTCString();
+				return date.split(" ")[4];
+			}
+			function createTable(){
+				var ms;
+				var ss;
+				if(document.getElementById('s').checked){
+					ms = document.getElementById('mainSpeedMiles');
+					ss = document.getElementById('mainSpeed');
+					ss.value = (parseFloat(ms.value) * mileConv).toFixed(2);
+				}else{
+					ms = document.getElementById('mainSpeed');
+					ss = document.getElementById('mainSpeedMiles');
+					ss.value = (parseFloat(ms.value) / mileConv).toFixed(2);
+				}
+
+				var table = document.getElementById('table');
+				table.innerHTML = null;
+				//for(var fc = table.firstChild; fc; fc = table.firstChild) table.removeChild(fc);
+
+				var mainSpeed;
+				if(document.getElementById('ddUnits').value == 2){
+					mainSpeed = parseFloat(document.getElementById('mainSpeedMiles').value);
+				}else{
+					mainSpeed = parseFloat(document.getElementById('mainSpeed').value);
+				}
+			
+				for(var i = 0.1; i < 9; i += 0.1){
+					var div = document.createElement('div');
+					var lineSpan = document.createElement('span');
+					lineSpan.innerHTML = i.toFixed(2) + " - " + formatMinutes(i / mainSpeed);
+					div.classList.add("line");
+					div.appendChild(lineSpan);
+					table.appendChild(div);
+				}
+			}
+		</script>
+	</body>
+</html>
