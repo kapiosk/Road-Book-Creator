@@ -5,7 +5,7 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "Scope": "/",
-  "start_url": "https://www.nuclearrepublic.club/rbc/",
+  "start_url": "https://rbc.nuclearrepublic.club/",
   "icons": [
     {"src": "mbccy-1024-1024.png", "sizes": "1024x1024"},
     {"src": "mbccy-1024-768.png", "sizes": "1024x768"},

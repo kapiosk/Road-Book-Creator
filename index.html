@@ -392,11 +392,11 @@
                 img.src = canData.data;
             }
 
-            var isParialInput = false;
+            var isPartialInput = false;
             function ToggleInput() {
-                isParialInput = !isParialInput;
+                isPartialInput = !isPartialInput;
                 var btn = document.getElementById("isPartialBtn");
-                if (isParialInput) {
+                if (isPartialInput) {
                     btn.innerText = "Partial";
                 } else {
                     btn.innerText = "Total";
@@ -431,7 +431,7 @@
 
                     partial = tulip.children[1];                
                     var total = tulip.children[2];
-                    if (isParialInput) {
+                    if (isPartialInput) {
 
                         var partialKm = partial.cells[1].children[1];
                         partialKm.setAttribute("tabindex", i + 1);
@@ -478,9 +478,9 @@
             document.addEventListener("mousemove", draw);
             document.addEventListener("mousedown", setPosition);
 
-            document.addEventListener("touchmove", draw);
-            document.addEventListener("touchstart", setPosition);
-            document.addEventListener("touchend", setPosition);
+            document.addEventListener("touchmove", draw, { passive: false });
+            document.addEventListener("touchstart", setPosition, { passive: false });
+            document.addEventListener("touchend", setPosition), { passive: false };
             
             var pos = { x: 0, y: 0, xOffset: 0, yOffset: 0 };
             
@@ -490,9 +490,16 @@
             function setPosition(e, command) {
                 if (e.target.tagName == "CANVAS") {
                     e.preventDefault();
-                    q = e;
-                    pos.x = e.clientX - pos.xOffset;
-                    pos.y = e.clientY - pos.yOffset;
+                    e.stopImmediatePropagation();
+
+                    var evnt = e;
+
+                    if (e.touches && e.touches.length > 0){
+                        evnt = e.touches[0];
+                    }
+
+                    pos.x = evnt.clientX - pos.xOffset;
+                    pos.y = evnt.clientY - pos.yOffset;
 
                     if (command === undefined) {
                         if (previousItem == e.target) {
@@ -510,6 +517,8 @@
             function draw(e) {
                 if (canvas && e.target.tagName == "CANVAS") {
                     e.preventDefault();
+                    e.stopImmediatePropagation();
+                    
                     // https://www.w3schools.com/graphics/canvas_drawing.asp
                     if (e.buttons == 1 || e.type == "touchmove") {
                         var ctx = canvas.getContext("2d");
@@ -530,7 +539,7 @@
                                 ctx.strokeStyle = "#000000";
 
                                 ctx.moveTo(pos.x, pos.y); // from
-                                setPosition(e, 'writting');
+                                setPosition(e, 'writing');
                                 ctx.lineTo(pos.x, pos.y); // to
 
                                 ctx.stroke(); // draw it!
