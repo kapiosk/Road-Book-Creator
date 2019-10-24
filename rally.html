@@ -34,6 +34,7 @@
 					<option value="2">Miles</option>
 					<option value="1">Kilometres</option>
 				</select>
+				<button id="track" onclick="TrackMe(true);">&#x1F6F0;</button>
 			</div>
 			<div>
 				<input type="radio" name="metric" value="metric" checked>km/h: <input id="mainSpeed" class="speed" type="text" value="45.00"/></input>
@@ -89,6 +90,50 @@
 					table.appendChild(div);
 				}
 			}
+
+			// function scrollMap(position) {
+			// 	// Scrolls the map so that it is centered at (position.coords.latitude, position.coords.longitude).
+			// 	console.log(position);
+            // }
+
+            // function handleError(error) {
+            //     // Update a div element with error.message.
+            // }
+
+            // // Request repeated updates.
+            // var watchId = navigator.geolocation.watchPosition(scrollMap, handleError);
+
+            // function buttonClickHandler() {
+            //     // Cancel the updates when the user clicks a button.
+            //     navigator.geolocation.clearWatch(watchId);
+            // }
+
+			var tracker;
+            function TrackMe(start) {
+                var track = document.getElementById("track");
+                if ((tracker && !start) || (!tracker && start)) {
+                    if (navigator.geolocation) {
+                        if(!track.classList.contains("activeButton")) track.classList.add("activeButton");
+                        navigator.geolocation.getCurrentPosition(function(e){
+                            var dataStamp = e.coords.latitude + "," + e.coords.longitude;
+                            if (e.coords.speed) dataStamp += "," + e.coords.speed;
+                            if (e.timestamp) dataStamp += "," + e.timestamp;
+
+                            if (localStorage.locationData) {
+                                localStorage.locationData += ";" + dataStamp;
+                            } else {
+                                localStorage.locationData = dataStamp;
+                            }
+                            // console.log(dataStamp);
+                            tracker = setTimeout(TrackMe, 1000);
+                        });
+                    }
+                } else {
+                    track.classList.remove("activeButton");
+                    window.clearTimeout(tracker);
+                    tracker = false;
+                }
+            }
 		</script>
 	</body>
 </html>

@@ -85,7 +85,7 @@
                 height: 2em;
                 vertical-align: middle;
             }
-            input[type="text"] {
+            input[type="text"], input[type="number"] {
                 text-align: center;
                 border: none;
             }
@@ -95,7 +95,9 @@
             .activeElement {
                 border: solid 1px black;
             }
-
+            .activeButton {
+                background-color: red;
+            }
             /*for screen readers only*/
             label.hiddenLabel {
                 position: absolute;
@@ -111,6 +113,7 @@
                 -moz-transform:rotate(180deg);
                 -o-transform:rotate(180deg);
                 -ms-transform:rotate(180deg);
+                transform:rotate(180deg)
             }
 
             .rotate90 {
@@ -118,6 +121,7 @@
                 -moz-transform:rotate(90deg);
                 -o-transform:rotate(90deg);
                 -ms-transform:rotate(90deg);
+                transform:rotate(90deg)
             }
 
             .rotate270 {
@@ -125,6 +129,7 @@
                 -moz-transform:rotate(270deg);
                 -o-transform:rotate(270deg);
                 -ms-transform:rotate(270deg);
+                transform:rotate(270deg);
             }
 
             @media print {
@@ -159,9 +164,6 @@
         <!-- https://www.fileformat.info/info/unicode/char/1f4be/index.htm -->
         <div class="content">
             <div id="toolbox" class="hidden-print toolbox">
-<!--                 <p>
-                    <label for="titleText">Title: </label><input id="titleText" type="text"/>
-                </p> -->
                 <p>
                     <span>Road Book:</span>
                     <button onclick="Print();">&#x1F5A8;</button>
@@ -173,7 +175,9 @@
                     <button onclick="Save();">&#x2702;</button>
                     <button onclick="Load();">&#x1f4cb;</button>
                     <button onclick="DownloadRouteTXT();">&#x1f4be;</button>
-                    <!-- <button onclick="LoadFromFile();">&#x1F4C2;</button> -->
+                    <button onclick="Share();">&#x1f517;</button>
+                    <!-- https://www.html5rocks.com/en/tutorials/file/dndfiles/ -->
+                    <!-- <label for="txtLoader"><button>&#x1F4C2;</button></label><input type="file" id="txtLoader" name="txtLoader" class="hidden" /> -->
                     <button id="isPartialBtn" onclick="ToggleInput();">Total</button>
                 </p>
                 <p>
@@ -202,18 +206,18 @@
                   </tr>
                   <tr>
                     <td>P</td>
-                    <td class="kmDist"><label class="hiddenLabel" for="pkm">Partial Km</label><input id="pkm" type="text" value="0.00" /></td>
-                    <td class="mDist"><label class="hiddenLabel" for="pm">Parial miles</label><input readonly id="pm" type="text" value="0.00" /></td>
+                    <td class="kmDist"><label class="hiddenLabel" for="pkm">Partial Km</label><input id="pkm" type="number" value="0.00" /></td>
+                    <td class="mDist"><label class="hiddenLabel" for="pm">Partial miles</label><input readonly id="pm" type="number" value="0.00" /></td>
                   </tr>
                   <tr>
                     <td>T</td>
-                    <td class="kmDist"><label class="hiddenLabel" for="tkm">Total Km</label><input id="tkm" type="text" value="0.00" /></td>
-                    <td class="mDist"><label class="hiddenLabel" for="tm">Total miles</label><input readonly id="tm" type="text" value="0.00" /></td>
+                    <td class="kmDist"><label class="hiddenLabel" for="tkm">Total Km</label><input id="tkm" type="number" value="0.00" /></td>
+                    <td class="mDist"><label class="hiddenLabel" for="tm">Total miles</label><input readonly id="tm" type="number" value="0.00" /></td>
                   </tr>
                   <tr>
                     <td>R</td>
-                    <td class="kmDist"><label class="hiddenLabel" for="rkm">Remaining Km</label><input readonly id="rkm" type="text" value="0.00" /></td>
-                    <td class="mDist"><label class="hiddenLabel" for="rm">Remaining miles</label><input readonly id="rm" type="text" value="0.00" /></td>
+                    <td class="kmDist"><label class="hiddenLabel" for="rkm">Remaining Km</label><input readonly id="rkm" type="number" value="0.00" /></td>
+                    <td class="mDist"><label class="hiddenLabel" for="rm">Remaining miles</label><input readonly id="rm" type="number" value="0.00" /></td>
                   </tr>
                   <tr>
                     <td></td>
@@ -226,6 +230,19 @@
         <!-- <script async defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.4.6/fabric.min.js"></script> -->
         <script async defer src="https://www.google.com/cloudprint/client/cpgadget.js"></script>
         <script>
+
+            function Share() {
+                if(navigator.share){
+                    Save();
+                    var shareData = {
+                            title: document.title,
+                            text: document.getElementById("savedText").value,
+                            url: ""
+                        };
+                    window.navigator.share(shareData);
+                }
+            }
+
             Element.prototype.insertChildAtIndex = function(child, index) {
                 if (!index) index = 0;
                 if (index >= this.children.length) {
@@ -234,20 +251,23 @@
                     this.insertBefore(child, this.children[index])
                 }
             }
+
             function isNumeric(n) {
                 return (n != "" && !isNaN(parseFloat(n)) && isFinite(n));
             }
-            if("serviceWorker" in navigator) {
+
+            if ("serviceWorker" in navigator) {
                 navigator.serviceWorker
                 .register("sw.js")
                 .then(function() { console.log("Service Worker Registered"); });
             }
+
             function Print() {
                 // var canvasses = document.getElementsByTagName("canvas");
                 // for (var i = 0; i < canvasses.length; i++) {
                 //     canvasses[i].classList.remove("activeElement");
                 // }
-                if ( navigator.userAgent.toLowerCase().indexOf("android") > -1 ) {
+                if (navigator.userAgent.toLowerCase().indexOf("android") > -1) {
                     // https://developers.google.com/cloud-print/docs/gadget
                     var gadget = new cloudprint.Gadget();
                     gadget.setPrintDocument("url", "Simplz Roadbook Creator", window.location.href, "utf-8");
@@ -256,6 +276,7 @@
                     window.print();
                 }
             }
+
             function offset(el) {
                 var rect = el.getBoundingClientRect();
                 //var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
@@ -288,6 +309,7 @@
                 pos.xOffset = off.left;
                 pos.yOffset = off.top;
             }
+
             function handleImage(e){
                 var reader = new FileReader();
                 reader.onload = function(event){
@@ -304,14 +326,17 @@
                 };
                 reader.readAsDataURL(e.target.files[0]);     
             }
+
             document.getElementById("widthSlider").oninput = function() {
                 canvas.width = this.value;
                 // setCanvas(canvas);
             };
+
             document.getElementById("heightSlider").oninput = function() {
                 canvas.height = this.value;
                 // setCanvas(canvas);
             };
+
             function AddCanvas() {
                 var el = document.createElement("canvas");
                 el.width = 200;
@@ -320,9 +345,11 @@
                 canvas.parentNode.appendChild(el);
                 setCanvas(el);
             }
+
             function ClearCanvas() {
                 setCanvas(canvas, "white");
             }
+
             function RemoveCanvas() {
                 if (canvas.parentNode.children.length == 1) {
                     ClearCanvas();
@@ -330,6 +357,7 @@
                     canvas.parentNode.removeChild(canvas);
                 }
             }
+
             function RotateCanvas() {
                 if(canvas.classList.contains('rotate270')){
                     canvas.classList.remove('rotate270');
@@ -342,12 +370,13 @@
                 } else {
                     canvas.classList.add('rotate90');
                 }
-                // canvas.classList.toggle("rotate180");
             }
+
             function Reset() {
                 document.getElementById("base").innerHTML = "";
                 Add();
             }
+
             function Save(){
                 var canvasses = document.getElementsByTagName("canvas");
                 var canData = [];
@@ -361,6 +390,7 @@
                 document.getElementById("savedText").value = json;
                 navigator.clipboard.writeText(json).catch(function(err){console.error("Failed to write clipboard contents: ", err);});
             }
+
             function Load(){
                 var data = document.getElementById("savedText").value;
                 if (data == "") {
@@ -371,6 +401,7 @@
                     LoadJSON(data);
                 }
             }
+
             function LoadJSON(data) {
                 var j = JSON.parse(data);
                 document.getElementById("base").innerHTML = j.data;
@@ -378,6 +409,7 @@
                     LoadCanvas(j.canvasses[i]);
                 }
             }
+
             function LoadCanvas(canData) {
                 var cnvs = document.getElementById(canData.id);
                 cnvs.classList.remove("activeElement");
@@ -414,7 +446,21 @@
                 }
                 document.getElementById("tulipAddIndex").value = "";
                 Calc();
+                AddInputListeners();
             }
+
+            function AddInputListeners() {
+                var nodeList = document.querySelectorAll("input[type=number]");
+                for(var i = 0; i < nodeList.length; i++) {
+                    if(!nodeList[i].readOnly) {
+                        nodeList[i].addEventListener("click", function(e){
+                            if (e.target.value == "0.00" || e.target.value == "0.000") e.target.select();
+                        });
+                    }
+                };
+            }
+            AddInputListeners();
+
             function Calc(){
                 var tulips = document.getElementsByTagName("table");
                 var runningTotal = 0;
@@ -518,7 +564,7 @@
                 if (canvas && e.target.tagName == "CANVAS") {
                     e.preventDefault();
                     e.stopImmediatePropagation();
-                    
+
                     // https://www.w3schools.com/graphics/canvas_drawing.asp
                     if (e.buttons == 1 || e.type == "touchmove") {
                         var ctx = canvas.getContext("2d");
@@ -560,6 +606,11 @@
                 document.body.appendChild(anchor);
                 anchor.click();
                 document.body.removeChild(anchor);
+            }
+            function LoadFromFile(){
+                if (window.File && window.FileReader && window.FileList && window.Blob) {
+                    
+                }
             }
 
             window.onscroll = function() {
