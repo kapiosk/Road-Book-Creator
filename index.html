@@ -1,153 +1,174 @@
 <!DOCTYPE HTML>
 <html lang="en">
-	<head>
-		<title>Simplz Roadbook Creator</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="Description" content="Simplz Tulip Roadbook Creator of MBCCY">
-        <meta name="theme-color" content="#ffffff"/>
-        <link rel="manifest" href="manifest.json">
-        <link rel="canonical" href="https://www.nuclearrepublic.club/rbc"/>
-        <link rel="icon" type="image/png" href="mbccy-48-48.png">
-		<style>
-			body{
-                font-family: Verdana,sans-serif;
-                line-height: 1.5;
-				user-select: none;
-                text-size-adjust: 100%;
-			}
 
-			.hidden{
-				display: none;
-			}
+<head>
+    <title>Simplz Roadbook Creator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Description" content="Simplz Tulip Roadbook Creator of MBCCY">
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="manifest" href="manifest.json">
+    <link rel="canonical" href="https://www.nuclearrepublic.club/rbc" />
+    <link rel="icon" type="image/png" href="mbccy-48-48.png">
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            line-height: 1.5;
+            user-select: none;
+            text-size-adjust: 100%;
+        }
 
-            h1 {
-                text-decoration: underline;
-                text-align: center;
-                font-size: 3em;
+        .hidden {
+            display: none;
+        }
+
+        h1 {
+            text-decoration: underline;
+            text-align: center;
+            font-size: 3em;
+        }
+
+        h2 {
+            font-size: 1em;
+            margin-top: 1.33em;
+            margin-bottom: 1.33em;
+        }
+
+        .content {
+            font-size: 1em;
+            max-width: 1000px;
+            min-width: 950px;
+            margin: auto;
+            padding: 2em;
+        }
+
+        .toolbox {
+            padding: 1em;
+            margin: auto;
+            background-color: lightgrey;
+        }
+
+        .hover {
+            position: fixed;
+            top: 0;
+        }
+
+        table,
+        td {
+            border-color: black;
+            border-style: solid;
+            border-width: 1px;
+        }
+
+        td {
+            height: 20%;
+            text-align: center;
+        }
+
+        table {
+            margin-bottom: 0.5em;
+            height: 260px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .descBox,
+        .infoBox {
+            width: 260px;
+        }
+
+        .measBox {
+            width: 80px;
+        }
+
+        .tBox,
+        .ssBox {
+            width: 40px
+        }
+
+        button {
+            height: 2em;
+            vertical-align: middle;
+        }
+
+        input {
+            width: 75px;
+            height: 2em;
+            vertical-align: middle;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            text-align: center;
+            border: none;
+        }
+
+        .inputFile {
+            width: 200px;
+        }
+
+        .activeElement {
+            border: solid 1px black;
+        }
+
+        .activeButton {
+            background-color: red;
+        }
+
+        /*for screen readers only*/
+        label.hiddenLabel {
+            position: absolute;
+            left: -10000px;
+            width: 1px;
+            height: 1px;
+            top: auto;
+            overflow: hidden;
+        }
+
+        .rotate180 {
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            transform: rotate(180deg)
+        }
+
+        .rotate90 {
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(90deg)
+        }
+
+        .rotate270 {
+            -webkit-transform: rotate(270deg);
+            -moz-transform: rotate(270deg);
+            -o-transform: rotate(270deg);
+            -ms-transform: rotate(270deg);
+            transform: rotate(270deg);
+        }
+
+        @media print {
+            .hidden-print {
+                display: none;
             }
 
-            h2 {
-                font-size: 1em;
-                margin-top: 1.33em;
-                margin-bottom: 1.33em;
-            }
-
-            .content {
-                font-size: 1em;
-                max-width: 1000px;
-                min-width: 950px;
-                margin: auto;
-                padding: 2em;
-            }
-
-            .toolbox {
-                padding: 1em;
-                margin: auto;
-                background-color: lightgrey;
-            }
-
-            .hover {
-                position: fixed;
-                top: 0;
-            }
-
-            table, td {
-                border-color: black;
-                border-style: solid;
-                border-width: 1px;
-            }
-            td {
-                height: 20%;
-                text-align: center;
-            }
             table {
-                margin-bottom: 0.5em;
-                height: 260px;
-                border-collapse: collapse;
+                page-break-inside: avoid;
                 width: 100%;
             }
-            .descBox, .infoBox {
-                width: 260px;
+
+            .ssBox {
+                width: auto;
             }
-            .measBox {
-                width: 80px;
-            }
-            .tBox, .ssBox {
-                width: 40px
-            }
-            button {
-                height: 2em;
-                vertical-align: middle;
-            }
-            input {
-                width: 75px;
-                height: 2em;
-                vertical-align: middle;
-            }
-            input[type="text"], input[type="number"] {
-                text-align: center;
+
+            .activeElement {
                 border: none;
             }
-            .inputFile {
-                width: 200px;
-            }
-            .activeElement {
-                border: solid 1px black;
-            }
-            .activeButton {
-                background-color: red;
-            }
-            /*for screen readers only*/
-            label.hiddenLabel {
-                position: absolute;
-                left: -10000px;
-                width: 1px;
-                height: 1px;
-                top: auto;
-                overflow: hidden;
-            }
+        }
 
-            .rotate180 {
-                -webkit-transform:rotate(180deg);
-                -moz-transform:rotate(180deg);
-                -o-transform:rotate(180deg);
-                -ms-transform:rotate(180deg);
-                transform:rotate(180deg)
-            }
-
-            .rotate90 {
-                -webkit-transform:rotate(90deg);
-                -moz-transform:rotate(90deg);
-                -o-transform:rotate(90deg);
-                -ms-transform:rotate(90deg);
-                transform:rotate(90deg)
-            }
-
-            .rotate270 {
-                -webkit-transform:rotate(270deg);
-                -moz-transform:rotate(270deg);
-                -o-transform:rotate(270deg);
-                -ms-transform:rotate(270deg);
-                transform:rotate(270deg);
-            }
-
-            @media print {
-                .hidden-print {
-                    display: none;
-                }
-                table {
-                    page-break-inside: avoid;
-                    width: 100%;
-                }
-                .ssBox {
-                    width: auto;
-                }
-                .activeElement {
-                    border: none;
-                }
-            }
-/*            @media screen and (max-width: 950px) and (orientation:portrait) {
+        /*            @media screen and (max-width: 950px) and (orientation:portrait) {
                 html {
                     transform: rotate(-90deg);
                     transform-origin: left top;
@@ -156,468 +177,499 @@
                     top: 100%;
                 }
             }*/
-		</style>
-	</head>
-	<body>
-        <!--https://github.com/storm-factory/HarmJoy-->
-        <!-- https://emojiterra.com/anticlockwise-arrows-button/ -->
-        <!-- https://www.fileformat.info/info/unicode/char/1f4be/index.htm -->
-        <div class="content">
-            <div id="toolbox" class="hidden-print toolbox">
-                <p>
-                    <span>Road Book:</span>
-                    <button onclick="Print();">&#x1F5A8;</button>
-                    <button onclick="Reset();">Reset</button>
-                    <button onclick="Calc();">Re-Calculate</button>
-                    <button onclick="Add();">Add Tulip</button>
-                    <label class="hiddenLabel" for="tulipAddIndex">Browse image</label><input type="text" id="tulipAddIndex" value=""/>
-                    <label class="hiddenLabel" for="savedText">Saved Data</label><input id="savedText" type="text" class="hidden" />
-                    <button onclick="Save();">&#x2702;</button>
-                    <button onclick="Load();">&#x1f4cb;</button>
-                    <button onclick="DownloadRouteTXT();">&#x1f4be;</button>
-                    <button onclick="Share();">&#x1f517;</button>
-                    <!-- https://www.html5rocks.com/en/tutorials/file/dndfiles/ -->
-                    <!-- <label for="txtLoader"><button>&#x1F4C2;</button></label><input type="file" id="txtLoader" name="txtLoader" class="hidden" /> -->
-                    <button id="isPartialBtn" onclick="ToggleInput();">Total</button>
-                </p>
-                <p>
-                    <span>Current Canvas:</span>
-                    <label class="hiddenLabel" for="imageLoader">Browse image</label><input type="file" id="imageLoader" class="inputFile" name="imageLoader"/>
-                    <label class="hiddenLabel" for="widthSlider">Width</label><input type="range" min="1" max="250" value="250" class="slider" id="widthSlider">
-                    <label class="hiddenLabel" for="heightSlider">Height</label><input type="range" min="1" max="250" value="250" class="slider" id="heightSlider">
-                    <button onclick="AddCanvas();">&#x2795;</button>
-                    <button onclick="RemoveCanvas();">&#x2796;</button>
-                    <button onclick="RotateCanvas();">&#x1F504;</button>
-                    <button onclick="ClearCanvas();">Clear</button>
-                </p>
-                <p>
-                    Double click on blank space "canvas" to add image and other canvas functions.
-                </p>
-            </div>
-            <div id="base">
-                <table>
-                  <tr>
+    </style>
+</head>
+
+<body>
+    <!--https://github.com/storm-factory/HarmJoy-->
+    <!-- https://emojiterra.com/anticlockwise-arrows-button/ -->
+    <!-- https://www.fileformat.info/info/unicode/char/1f4be/index.htm -->
+    <div class="content">
+        <div id="toolbox" class="hidden-print toolbox">
+            <p>
+                <span>Road Book:</span>
+                <button onclick="Print();">&#x1F5A8;</button>
+                <button onclick="Reset();">Reset</button>
+                <button onclick="Calc();">Re-Calculate</button>
+                <button onclick="Add();">Add Tulip</button>
+                <label class="hiddenLabel" for="tulipAddIndex">Browse image</label><input type="text" id="tulipAddIndex"
+                    value="" />
+                <label class="hiddenLabel" for="savedText">Saved Data</label><input id="savedText" type="text"
+                    class="hidden" />
+                <button onclick="Save();">&#x2702;</button>
+                <button onclick="Load();">&#x1f4cb;</button>
+                <button onclick="DownloadRouteTXT();">&#x1f4be;</button>
+                <button onclick="Share();">&#x1f517;</button>
+                <!-- https://www.html5rocks.com/en/tutorials/file/dndfiles/ -->
+                <!-- <label for="txtLoader"><button>&#x1F4C2;</button></label><input type="file" id="txtLoader" name="txtLoader" class="hidden" /> -->
+                <button id="isPartialBtn" onclick="ToggleInput();">Total</button>
+            </p>
+            <p>
+                <span>Current Canvas:</span>
+                <label class="hiddenLabel" for="imageLoader">Browse image</label><input type="file" id="imageLoader"
+                    class="inputFile" name="imageLoader" />
+                <label class="hiddenLabel" for="widthSlider">Width</label><input type="range" min="1" max="250"
+                    value="250" class="slider" id="widthSlider">
+                <label class="hiddenLabel" for="heightSlider">Height</label><input type="range" min="1" max="250"
+                    value="250" class="slider" id="heightSlider">
+                <button onclick="AddCanvas();">&#x2795;</button>
+                <button onclick="RemoveCanvas();">&#x2796;</button>
+                <button onclick="RotateCanvas();">&#x1F504;</button>
+                <button onclick="ClearCanvas();">Clear</button>
+            </p>
+            <p>
+                Double click on blank space "canvas" to add image and other canvas functions.
+            </p>
+        </div>
+        <div id="base">
+            <table>
+                <tr>
                     <td class="tBox"></td>
                     <td class="measBox">Km</td>
                     <td class="measBox">Miles</td>
                     <td class="descBox" rowspan="5"><canvas width="250" height="250"></canvas></td>
                     <td class="ssBox" rowspan="5"></td>
                     <td class="infoBox" rowspan="5"><canvas width="250" height="250"></canvas></td>
-                  </tr>
-                  <tr>
+                </tr>
+                <tr>
                     <td>P</td>
-                    <td class="kmDist"><label class="hiddenLabel" for="pkm">Partial Km</label><input id="pkm" type="number" value="0.00" /></td>
-                    <td class="mDist"><label class="hiddenLabel" for="pm">Partial miles</label><input readonly id="pm" type="number" value="0.00" /></td>
-                  </tr>
-                  <tr>
+                    <td class="kmDist"><label class="hiddenLabel" for="pkm">Partial Km</label><input id="pkm"
+                            type="number" value="0.00" /></td>
+                    <td class="mDist"><label class="hiddenLabel" for="pm">Partial miles</label><input readonly id="pm"
+                            type="number" value="0.00" /></td>
+                </tr>
+                <tr>
                     <td>T</td>
-                    <td class="kmDist"><label class="hiddenLabel" for="tkm">Total Km</label><input id="tkm" type="number" value="0.00" /></td>
-                    <td class="mDist"><label class="hiddenLabel" for="tm">Total miles</label><input readonly id="tm" type="number" value="0.00" /></td>
-                  </tr>
-                  <tr>
+                    <td class="kmDist"><label class="hiddenLabel" for="tkm">Total Km</label><input id="tkm"
+                            type="number" value="0.00" /></td>
+                    <td class="mDist"><label class="hiddenLabel" for="tm">Total miles</label><input readonly id="tm"
+                            type="number" value="0.00" /></td>
+                </tr>
+                <tr>
                     <td>R</td>
-                    <td class="kmDist"><label class="hiddenLabel" for="rkm">Remaining Km</label><input readonly id="rkm" type="number" value="0.00" /></td>
-                    <td class="mDist"><label class="hiddenLabel" for="rm">Remaining miles</label><input readonly id="rm" type="number" value="0.00" /></td>
-                  </tr>
-                  <tr>
+                    <td class="kmDist"><label class="hiddenLabel" for="rkm">Remaining Km</label><input readonly id="rkm"
+                            type="number" value="0.00" /></td>
+                    <td class="mDist"><label class="hiddenLabel" for="rm">Remaining miles</label><input readonly id="rm"
+                            type="number" value="0.00" /></td>
+                </tr>
+                <tr>
                     <td></td>
                     <td></td>
                     <td></td>
-                  </tr>
-                </table>
-            </div>
+                </tr>
+            </table>
         </div>
-        <!-- <script async defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.4.6/fabric.min.js"></script> -->
-        <script async defer src="https://www.google.com/cloudprint/client/cpgadget.js"></script>
-        <script>
+    </div>
+    <!-- <script async defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.4.6/fabric.min.js"></script> -->
+    <script async defer src="https://www.google.com/cloudprint/client/cpgadget.js"></script>
+    <script>
 
-            function Share() {
-                if(navigator.share){
-                    Save();
-                    var shareData = {
-                            title: document.title,
-                            text: document.getElementById("savedText").value,
-                            url: ""
-                        };
-                    window.navigator.share(shareData);
-                }
-            }
-
-            Element.prototype.insertChildAtIndex = function(child, index) {
-                if (!index) index = 0;
-                if (index >= this.children.length) {
-                    this.appendChild(child)
-                } else {
-                    this.insertBefore(child, this.children[index])
-                }
-            }
-
-            function isNumeric(n) {
-                return (n != "" && !isNaN(parseFloat(n)) && isFinite(n));
-            }
-
-            if ("serviceWorker" in navigator) {
-                navigator.serviceWorker
-                .register("sw.js")
-                .then(function() { console.log("Service Worker Registered"); });
-            }
-
-            function Print() {
-                // var canvasses = document.getElementsByTagName("canvas");
-                // for (var i = 0; i < canvasses.length; i++) {
-                //     canvasses[i].classList.remove("activeElement");
-                // }
-                if (navigator.userAgent.toLowerCase().indexOf("android") > -1) {
-                    // https://developers.google.com/cloud-print/docs/gadget
-                    var gadget = new cloudprint.Gadget();
-                    gadget.setPrintDocument("url", "Simplz Roadbook Creator", window.location.href, "utf-8");
-                    gadget.openPrintDialog();
-                } else {
-                    window.print();
-                }
-            }
-
-            function offset(el) {
-                var rect = el.getBoundingClientRect();
-                //var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-                //var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                return {top: rect.top, left: rect.left};
-            }
-            document.getElementById("imageLoader").addEventListener("change", handleImage, false);
-            var canvas;
-
-            // setCanvas(document.getElementsByTagName("canvas")[0]);
-
-            function setCanvas(me, colour){
-                
-                if (canvas) canvas.classList.toggle("activeElement");
-                canvas = me;
-                canvas.classList.toggle("activeElement");
-                
-                document.getElementById("widthSlider").value = canvas.width;
-                document.getElementById("heightSlider").value = canvas.height;
-
-                if (colour) {
-                    var ctx = canvas.getContext("2d");
-                    ctx.beginPath();
-                    ctx.rect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = colour;
-                    ctx.fill();
-                }
-
-                var off = offset(canvas);
-                pos.xOffset = off.left;
-                pos.yOffset = off.top;
-            }
-
-            function handleImage(e){
-                var reader = new FileReader();
-                reader.onload = function(event){
-                    var img = new Image();
-                    img.onload = function(){
-                        var ratio = Math.min(canvas.width / img.width, canvas.height / img.height);
-                        var width = ratio * img.width;
-                        var height = ratio * img.height;
-                        canvas.width = canvas.width;
-                        canvas.getContext("2d").drawImage(img, 0, 0, width, height);
-                        document.getElementById("imageLoader").value = "";
-                    };
-                    img.src = event.target.result;
+        function Share() {
+            if (navigator.share) {
+                Save();
+                var shareData = {
+                    title: document.title,
+                    text: document.getElementById("savedText").value,
+                    url: ""
                 };
-                reader.readAsDataURL(e.target.files[0]);     
+                window.navigator.share(shareData);
+            }
+        }
+
+        Element.prototype.insertChildAtIndex = function (child, index) {
+            if (!index) index = 0;
+            if (index >= this.children.length) {
+                this.appendChild(child)
+            } else {
+                this.insertBefore(child, this.children[index])
+            }
+        }
+
+        function isNumeric(n) {
+            return (n != "" && !isNaN(parseFloat(n)) && isFinite(n));
+        }
+
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker
+                .register("sw.js")
+                .then(function () { console.log("Service Worker Registered"); });
+        }
+
+        function Print() {
+            // var canvasses = document.getElementsByTagName("canvas");
+            // for (var i = 0; i < canvasses.length; i++) {
+            //     canvasses[i].classList.remove("activeElement");
+            // }
+            if (navigator.userAgent.toLowerCase().indexOf("android") > -1) {
+                // https://developers.google.com/cloud-print/docs/gadget
+                var gadget = new cloudprint.Gadget();
+                gadget.setPrintDocument("url", "Simplz Roadbook Creator", window.location.href, "utf-8");
+                gadget.openPrintDialog();
+            } else {
+                window.print();
+            }
+        }
+
+        function offset(el) {
+            var rect = el.getBoundingClientRect();
+            //var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+            //var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            return { top: rect.top, left: rect.left };
+        }
+        document.getElementById("imageLoader").addEventListener("change", handleImage, false);
+        var canvas;
+
+        // setCanvas(document.getElementsByTagName("canvas")[0]);
+
+        function setCanvas(me, colour) {
+
+            if (canvas) canvas.classList.toggle("activeElement");
+            canvas = me;
+            canvas.classList.toggle("activeElement");
+
+            document.getElementById("widthSlider").value = canvas.width;
+            document.getElementById("heightSlider").value = canvas.height;
+
+            if (colour) {
+                var ctx = canvas.getContext("2d");
+                ctx.beginPath();
+                ctx.rect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = colour;
+                ctx.fill();
             }
 
-            document.getElementById("widthSlider").oninput = function() {
-                canvas.width = this.value;
-            };
+            var off = offset(canvas);
+            pos.xOffset = off.left;
+            pos.yOffset = off.top;
+        }
 
-            document.getElementById("heightSlider").oninput = function() {
-                canvas.height = this.value;
-            };
-
-            function AddCanvas() {
-                var el = document.createElement("canvas");
-                el.width = 200;
-                el.height = 200;
-                el.ondblclick = function(){setCanvas(this);};
-                canvas.parentNode.appendChild(el);
-                setCanvas(el);
-            }
-
-            function ClearCanvas() {
-                setCanvas(canvas, "white");
-            }
-
-            function RemoveCanvas() {
-                if (canvas.parentNode.children.length == 1) {
-                    ClearCanvas();
-                } else {
-                    canvas.parentNode.removeChild(canvas);
-                }
-            }
-
-            function RotateCanvas() {
-                if(canvas.classList.contains('rotate270')){
-                    canvas.classList.remove('rotate270');
-                } else if(canvas.classList.contains('rotate180')) {
-                    canvas.classList.remove('rotate180');
-                    canvas.classList.add('rotate270');
-                } else if(canvas.classList.contains('rotate90')) {
-                    canvas.classList.remove('rotate90');
-                    canvas.classList.add('rotate180');
-                } else {
-                    canvas.classList.add('rotate90');
-                }
-            }
-
-            function Reset() {
-                document.getElementById("base").innerHTML = "";
-                Add();
-            }
-
-            function Save(){
-                var canvasses = document.getElementsByTagName("canvas");
-                var canData = [];
-                for (var i = 0; i < canvasses.length; i++) {
-                    canvasses[i].id = "cId" + i.toString();
-                    canData.push({ id: canvasses[i].id, data: canvasses[i].toDataURL() });
-                }
-                var data = document.getElementById("base").innerHTML;
-                var savedObject = {data: data, canvasses: canData};
-                var json = JSON.stringify(savedObject);
-                document.getElementById("savedText").value = json;
-                navigator.clipboard.writeText(json).catch(function(err){console.error("Failed to write clipboard contents: ", err);});
-            }
-
-            function Load(){
-                var data = document.getElementById("savedText").value;
-                if (data == "") {
-                    navigator.clipboard.readText()
-                        .then(function(data){LoadJSON(data);})
-                        .catch(function(err){console.error("Failed to read clipboard contents: ", err);});
-                } else {
-                    LoadJSON(data);
-                }
-            }
-
-            function LoadJSON(data) {
-                var j = JSON.parse(data);
-                document.getElementById("base").innerHTML = j.data;
-                for (var i = 0; i < j.canvasses.length; i++) {
-                    LoadCanvas(j.canvasses[i]);
-                }
-            }
-
-            function LoadCanvas(canData) {
-                var cnvs = document.getElementById(canData.id);
-                cnvs.classList.remove("activeElement");
+        function handleImage(e) {
+            var reader = new FileReader();
+            reader.onload = function (event) {
                 var img = new Image();
-                img.onload = function(){
-                    var ratio = Math.min(cnvs.width / img.width, cnvs.height / img.height);
+                img.onload = function () {
+                    var ratio = Math.min(canvas.width / img.width, canvas.height / img.height);
                     var width = ratio * img.width;
                     var height = ratio * img.height;
-                    cnvs.width = cnvs.width;
-                    cnvs.getContext("2d").drawImage(img, 0, 0, width, height);
+                    canvas.width = canvas.width;
+                    canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+                    document.getElementById("imageLoader").value = "";
                 };
-                img.src = canData.data;
-            }
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
 
-            var isPartialInput = false;
-            function ToggleInput() {
-                isPartialInput = !isPartialInput;
-                var btn = document.getElementById("isPartialBtn");
-                if (isPartialInput) {
-                    btn.innerText = "Partial";
-                } else {
-                    btn.innerText = "Total";
-                }
-            }
+        document.getElementById("widthSlider").oninput = function () {
+            canvas.width = this.value;
+        };
 
-            var cleanTable = document.getElementsByTagName("table")[0].cloneNode(true);
-            var conv = 1.609344;
-            function Add() {
-                var indx = document.getElementById("tulipAddIndex").value;
-                if (isNumeric(indx)) {
-                    document.getElementById("base").insertChildAtIndex(cleanTable.cloneNode(true), indx);
-                } else {
-                    document.getElementById("base").appendChild(cleanTable.cloneNode(true));
-                }
-                document.getElementById("tulipAddIndex").value = "";
-                Calc();
-                AddInputListeners();
-            }
+        document.getElementById("heightSlider").oninput = function () {
+            canvas.height = this.value;
+        };
 
-            function AddInputListeners() {
-                var nodeList = document.querySelectorAll("input[type=number]");
-                for(var i = 0; i < nodeList.length; i++) {
-                    if(!nodeList[i].readOnly) {
-                        nodeList[i].addEventListener("click", function(e){
-                            if (e.target.value == "0.00" || e.target.value == "0.000") e.target.select();
-                        });
-                    }
-                };
+        function AddCanvas() {
+            var el = document.createElement("canvas");
+            el.width = 200;
+            el.height = 200;
+            el.ondblclick = function () { setCanvas(this); };
+            canvas.parentNode.appendChild(el);
+            setCanvas(el);
+        }
+
+        function ClearCanvas() {
+            setCanvas(canvas, "white");
+        }
+
+        function RemoveCanvas() {
+            if (canvas.parentNode.children.length == 1) {
+                ClearCanvas();
+            } else {
+                canvas.parentNode.removeChild(canvas);
             }
+        }
+
+        function RotateCanvas() {
+            if (canvas.classList.contains('rotate270')) {
+                canvas.classList.remove('rotate270');
+            } else if (canvas.classList.contains('rotate180')) {
+                canvas.classList.remove('rotate180');
+                canvas.classList.add('rotate270');
+            } else if (canvas.classList.contains('rotate90')) {
+                canvas.classList.remove('rotate90');
+                canvas.classList.add('rotate180');
+            } else {
+                canvas.classList.add('rotate90');
+            }
+        }
+
+        function Reset() {
+            document.getElementById("base").innerHTML = "";
+            Add();
+        }
+
+        function Save() {
+            var canvasses = document.getElementsByTagName("canvas");
+            var canData = [];
+            for (var i = 0; i < canvasses.length; i++) {
+                canvasses[i].id = "cId" + i.toString();
+                canData.push({ id: canvasses[i].id, data: canvasses[i].toDataURL() });
+            }
+            var data = document.getElementById("base").innerHTML;
+            var savedObject = { data: data, canvasses: canData };
+            var json = JSON.stringify(savedObject);
+            document.getElementById("savedText").value = json;
+            navigator.clipboard.writeText(json).catch(function (err) { console.error("Failed to write clipboard contents: ", err); });
+        }
+
+        function Load() {
+            var data = document.getElementById("savedText").value;
+            if (data == "") {
+                navigator.clipboard.readText()
+                    .then(function (data) { LoadJSON(data); })
+                    .catch(function (err) { console.error("Failed to read clipboard contents: ", err); });
+            } else {
+                LoadJSON(data);
+            }
+        }
+
+        function LoadJSON(data) {
+            var j = JSON.parse(data);
+            document.getElementById("base").innerHTML = j.data;
+            for (var i = 0; i < j.canvasses.length; i++) {
+                LoadCanvas(j.canvasses[i]);
+            }
+        }
+
+        function LoadCanvas(canData) {
+            var cnvs = document.getElementById(canData.id);
+            cnvs.classList.remove("activeElement");
+            var img = new Image();
+            img.onload = function () {
+                var ratio = Math.min(cnvs.width / img.width, cnvs.height / img.height);
+                var width = ratio * img.width;
+                var height = ratio * img.height;
+                cnvs.width = cnvs.width;
+                cnvs.getContext("2d").drawImage(img, 0, 0, width, height);
+            };
+            img.src = canData.data;
+        }
+
+        var isPartialInput = false;
+        function ToggleInput() {
+            isPartialInput = !isPartialInput;
+            var btn = document.getElementById("isPartialBtn");
+            if (isPartialInput) {
+                btn.innerText = "Partial";
+            } else {
+                btn.innerText = "Total";
+            }
+        }
+
+        var cleanTable = document.getElementsByTagName("table")[0].cloneNode(true);
+        var conv = 1.609344;
+        function Add() {
+            var indx = document.getElementById("tulipAddIndex").value;
+            if (isNumeric(indx)) {
+                document.getElementById("base").insertChildAtIndex(cleanTable.cloneNode(true), indx);
+            } else {
+                document.getElementById("base").appendChild(cleanTable.cloneNode(true));
+            }
+            document.getElementById("tulipAddIndex").value = "";
+            Calc();
             AddInputListeners();
+        }
 
-            function Calc(){
-                var tulips = document.getElementsByTagName("table");
-                var runningTotal = 0;
-                var lastTotal = 0;
-                var i = 0;
-                var tulip;
-                var partialValue;
-                var partial;
-
-                for(i = 0; i < tulips.length; i++) {
-                    tulip = tulips[i].firstElementChild;
-
-                    tulip.children[0].cells[0].innerText = i + 1;
-
-                    partial = tulip.children[1];                
-                    var total = tulip.children[2];
-                    if (isPartialInput) {
-
-                        var partialKm = partial.cells[1].children[1];
-                        partialKm.setAttribute("tabindex", i + 1);
-                        partialValue = parseFloat(partialKm.value);
-
-                        partialKm.setAttribute("value", partialValue.toFixed(3));
-                        partial.cells[2].children[1].setAttribute("value", (partialValue / conv).toFixed(3));
-                        
-                        runningTotal += partialValue;
-                        
-                        total.cells[1].children[1].setAttribute("value", runningTotal.toFixed(3));
-                        total.cells[2].children[1].setAttribute("value", (runningTotal / conv).toFixed(3));
-                    } else {
-
-                        var totalKm = total.cells[1].children[1];
-                        totalKm.setAttribute("tabindex", i + 1);
-                        runningTotal = parseFloat(totalKm.value);
-
-                        totalKm.setAttribute("value", runningTotal.toFixed(3));
-                        total.cells[2].children[1].setAttribute("value", (runningTotal / conv).toFixed(3));
-
-                        
-                        partialValue = runningTotal - lastTotal;
-                        partial.cells[1].children[1].setAttribute("value", partialValue.toFixed(3));
-                        partial.cells[2].children[1].setAttribute("value", (partialValue / conv).toFixed(3));
-
-                        lastTotal = runningTotal;
-                    }
+        function AddInputListeners() {
+            var nodeList = document.querySelectorAll("input[type=number]");
+            for (var i = 0; i < nodeList.length; i++) {
+                if (!nodeList[i].readOnly) {
+                    nodeList[i].addEventListener("click", function (e) {
+                        if (e.target.value == "0.00" || e.target.value == "0.000") e.target.select();
+                    });
                 }
-                for(i = 0; i < tulips.length; i++) {
-                    tulip = tulips[i].firstElementChild;
+            };
+        }
+        AddInputListeners();
 
-                    partial = tulip.children[1];
-                    partialValue = parseFloat(partial.cells[1].children[1].value);
-                    runningTotal -= partialValue;
-                    if (runningTotal < 0) runningTotal = 0;
+        function Calc() {
+            var tulips = document.getElementsByTagName("table");
+            var runningTotal = 0;
+            var lastTotal = 0;
+            var i = 0;
+            var tulip;
+            var partialValue;
+            var partial;
 
-                    var remainder = tulip.children[3];
-                    remainder.cells[1].children[1].setAttribute("value", runningTotal.toFixed(3));
-                    remainder.cells[2].children[1].setAttribute("value", (runningTotal / conv).toFixed(3));
-                }
-            }
+            for (i = 0; i < tulips.length; i++) {
+                tulip = tulips[i].firstElementChild;
 
-            document.addEventListener("mousemove", draw);
-            document.addEventListener("mousedown", setPosition);
+                tulip.children[0].cells[0].innerText = i + 1;
 
-            document.addEventListener("touchmove", draw, { passive: false });
-            document.addEventListener("touchstart", setPosition, { passive: false });
-            document.addEventListener("touchend", setPosition), { passive: false };
-            
-            var pos = { x: 0, y: 0, xOffset: 0, yOffset: 0 };
-            
-            var previousItem = 0;
-            var previousItemCount = 0;
+                partial = tulip.children[1];
+                var total = tulip.children[2];
+                if (isPartialInput) {
 
-            function setPosition(e, command) {
-                if (e.target.tagName == "CANVAS") {
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
+                    var partialKm = partial.cells[1].children[1];
+                    partialKm.setAttribute("tabindex", i + 1);
+                    partialValue = parseFloat(partialKm.value);
 
-                    var evnt = e;
+                    partialKm.setAttribute("value", partialValue.toFixed(3));
+                    partial.cells[2].children[1].setAttribute("value", (partialValue / conv).toFixed(3));
 
-                    if (e.touches && e.touches.length > 0){
-                        evnt = e.touches[0];
-                    }
+                    runningTotal += partialValue;
 
-                    pos.x = evnt.clientX - pos.xOffset;
-                    pos.y = evnt.clientY - pos.yOffset;
-
-                    if (command === undefined) {
-                        if (previousItem == e.target) {
-                            previousItemCount += 1;
-                        } else {
-                            previousItemCount = 0;
-                        }
-                        if (previousItemCount == 1) setCanvas(e.target);
-                        previousItem = e.target; 
-                    }
-                }
-            }
-
-            var shape = 1;
-            function draw(e) {
-                if (canvas && e.target.tagName == "CANVAS") {
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
-
-                    // https://www.w3schools.com/graphics/canvas_drawing.asp
-                    if (e.buttons == 1 || e.type == "touchmove") {
-                        var ctx = canvas.getContext("2d");
-                        
-                        switch(shape) {
-                            case 0:
-                                ctx.font = "30px Arial";
-                                ctx.fillStyle = "black";
-                                ctx.textAlign = "left";
-                                ctx.fillText("Hello World", pos.x, pos.y);
-                                break;
-
-                            default:
-                                ctx.beginPath(); // begin
-
-                                ctx.lineWidth = 5;
-                                ctx.lineCap = "round";
-                                ctx.strokeStyle = "#000000";
-
-                                ctx.moveTo(pos.x, pos.y); // from
-                                setPosition(e, 'writing');
-                                ctx.lineTo(pos.x, pos.y); // to
-
-                                ctx.stroke(); // draw it!
-                        }
-                    }
-                }
-            }
-            function DownloadRouteTXT(){
-                Save();
-                var text = document.getElementById("savedText").value;
-                text = text.replace(/\n/g, "\r\n"); 
-                var blob = new Blob([text], { type: "text/plain"});
-                var anchor = document.createElement("a");
-                anchor.download = "route.txt";
-                anchor.href = window.URL.createObjectURL(blob);
-                anchor.target ="_blank";
-                anchor.style.display = "none";
-                document.body.appendChild(anchor);
-                anchor.click();
-                document.body.removeChild(anchor);
-            }
-            function LoadFromFile(){
-                if (window.File && window.FileReader && window.FileList && window.Blob) {
-                    
-                }
-            }
-
-            window.onscroll = function() {
-                if (window.pageYOffset == 0) {
-                    document.getElementById("toolbox").classList.remove("hover");
+                    total.cells[1].children[1].setAttribute("value", runningTotal.toFixed(3));
+                    total.cells[2].children[1].setAttribute("value", (runningTotal / conv).toFixed(3));
                 } else {
-                    document.getElementById("toolbox").classList.add("hover");
+
+                    var totalKm = total.cells[1].children[1];
+                    totalKm.setAttribute("tabindex", i + 1);
+                    runningTotal = parseFloat(totalKm.value);
+
+                    totalKm.setAttribute("value", runningTotal.toFixed(3));
+                    total.cells[2].children[1].setAttribute("value", (runningTotal / conv).toFixed(3));
+
+
+                    partialValue = runningTotal - lastTotal;
+                    partial.cells[1].children[1].setAttribute("value", partialValue.toFixed(3));
+                    partial.cells[2].children[1].setAttribute("value", (partialValue / conv).toFixed(3));
+
+                    lastTotal = runningTotal;
                 }
             }
-        </script>
-	</body>
+            for (i = 0; i < tulips.length; i++) {
+                tulip = tulips[i].firstElementChild;
+
+                partial = tulip.children[1];
+                partialValue = parseFloat(partial.cells[1].children[1].value);
+                runningTotal -= partialValue;
+                if (runningTotal < 0) runningTotal = 0;
+
+                var remainder = tulip.children[3];
+                remainder.cells[1].children[1].setAttribute("value", runningTotal.toFixed(3));
+                remainder.cells[2].children[1].setAttribute("value", (runningTotal / conv).toFixed(3));
+            }
+        }
+
+        document.addEventListener("mousemove", draw);
+        document.addEventListener("mousedown", setPosition);
+
+        document.addEventListener("touchmove", draw, { passive: false });
+        document.addEventListener("touchstart", setPosition, { passive: false });
+        document.addEventListener("touchend", setPosition), { passive: false };
+
+        var pos = { x: 0, y: 0, xOffset: 0, yOffset: 0 };
+
+        var previousItem = 0;
+        var previousItemCount = 0;
+
+        function setPosition(e, command) {
+            if (e.target.tagName == "CANVAS") {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+
+                var evnt = e;
+
+                if (e.touches && e.touches.length > 0) {
+                    evnt = e.touches[0];
+                }
+
+                pos.x = evnt.clientX - pos.xOffset;
+                pos.y = evnt.clientY - pos.yOffset;
+
+                if (command === undefined) {
+                    if (previousItem == e.target) {
+                        previousItemCount += 1;
+                    } else {
+                        previousItemCount = 0;
+                    }
+                    if (previousItemCount == 1) setCanvas(e.target);
+                    previousItem = e.target;
+                }
+            }
+        }
+
+        var shape = 1;
+        function draw(e) {
+            if (canvas && e.target.tagName == "CANVAS") {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+
+                // https://www.w3schools.com/graphics/canvas_drawing.asp
+                if (e.buttons == 1 || e.type == "touchmove") {
+                    var ctx = canvas.getContext("2d");
+
+                    switch (shape) {
+                        case 0:
+                            ctx.font = "30px Arial";
+                            ctx.fillStyle = "black";
+                            ctx.textAlign = "left";
+                            ctx.fillText("Hello World", pos.x, pos.y);
+                            break;
+
+                        default:
+                            ctx.beginPath(); // begin
+
+                            ctx.lineWidth = 5;
+                            ctx.lineCap = "round";
+                            ctx.strokeStyle = "#000000";
+
+                            ctx.moveTo(pos.x, pos.y); // from
+                            setPosition(e, 'writing');
+                            ctx.lineTo(pos.x, pos.y); // to
+
+                            ctx.stroke(); // draw it!
+                    }
+                }
+            }
+        }
+        function DownloadRouteTXT() {
+            Save();
+            var text = document.getElementById("savedText").value;
+            text = text.replace(/\n/g, "\r\n");
+            var blob = new Blob([text], { type: "text/plain" });
+            var anchor = document.createElement("a");
+            anchor.download = "route.txt";
+            anchor.href = window.URL.createObjectURL(blob);
+            anchor.target = "_blank";
+            anchor.style.display = "none";
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+        }
+        // function LoadFromFile() {
+        //     if (window.File && window.FileReader && window.FileList && window.Blob) {
+
+        //     }
+        // }
+       
+        // document.addEventListener('paste', function (event) {
+        //     navigator.clipboard.read().then(data => {
+        //         q= data;
+        //         console.log(data);
+        //         return data.items[0].getAsFile();
+        //     }).then(file => {
+        //         // Create a new image element
+        //         let img = new Image();
+        //         img.onload = function () {
+        //             let ctx = canvas.getContext('2d');
+        //             // Draw the image on the canvas
+        //             ctx.drawImage(img, 0, 0);
+        //         };
+        //         // Set the source of the image element to the clipboard image data
+        //         img.src = URL.createObjectURL(file);
+        //     });
+        // });
+
+        window.onscroll = function () {
+            if (window.pageYOffset == 0) {
+                document.getElementById("toolbox").classList.remove("hover");
+            } else {
+                document.getElementById("toolbox").classList.add("hover");
+            }
+        }
+    </script>
+</body>
+
 </html>
