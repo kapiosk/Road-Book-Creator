@@ -264,8 +264,7 @@
             </table>
         </div>
     </div>
-    <!-- <script async defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.4.6/fabric.min.js"></script> -->
-    <script async defer src="https://www.google.com/cloudprint/client/cpgadget.js"></script>
+
     <script>
 
         function Share() {
@@ -300,18 +299,7 @@
         }
 
         function Print() {
-            // var canvasses = document.getElementsByTagName("canvas");
-            // for (var i = 0; i < canvasses.length; i++) {
-            //     canvasses[i].classList.remove("activeElement");
-            // }
-            if (navigator.userAgent.toLowerCase().indexOf("android") > -1) {
-                // https://developers.google.com/cloud-print/docs/gadget
-                var gadget = new cloudprint.Gadget();
-                gadget.setPrintDocument("url", "Simplz Roadbook Creator", window.location.href, "utf-8");
-                gadget.openPrintDialog();
-            } else {
-                window.print();
-            }
+            window.print();
         }
 
         function offset(el) {
