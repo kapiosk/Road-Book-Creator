@@ -340,13 +340,24 @@
             reader.onload = function (event) {
                 var img = new Image();
                 img.onload = function () {
-                    var ratio = Math.min(canvas.width / img.width, canvas.height / img.height);
-                    var width = ratio * img.width;
-                    var height = ratio * img.height;
+                    var ratio = img.width / img.height;
+                    if(ratio > 1)
+                    {
+                        img.width = 250;
+                        img.height = 250 / ratio;
+                    }
+                    else
+                    {
+                        img.width = 250 * ratio;
+                        img.height = 250;
+                    }
+
                     canvas.width = canvas.width;
-                    canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+                    canvas.getContext("2d").drawImage(img, 0, 0);
                     document.getElementById("imageLoader").value = "";
                 };
+                canvas.parentNode.appendChild(img);
+                canvas.parentNode.removeChild(canvas);
                 img.src = event.target.result;
             };
             reader.readAsDataURL(e.target.files[0]);
